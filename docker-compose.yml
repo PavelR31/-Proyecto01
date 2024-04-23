@@ -1,0 +1,19 @@
+version: '3'
+services:
+  sitio1:
+    build: ./sitio1
+  sitio2:
+    build: ./sitio2
+  sitio3:
+    build: ./sitio3
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/home/ppozo/ssl
+    ports:
+      - "8080:80"
+    depends_on:
+      - sitio1
+      - sitio2
+      - sitio3
